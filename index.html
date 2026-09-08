@@ -3,414 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Meninas nas Olimpíadas | Feira de Ciências 2026</title>
 
+<!-- Chart.js para os gráficos interativos -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- QRCode.js para geração dinâmica -->
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
 <style>
-:root{
-    --bg:#f4f6fb;
-    --card:#ffffff;
-    --text:#172033;
-    --muted:#697386;
-    --primary:#5b4bdb;
-    --primary2:#806cff;
-    --border:#e5e7ef;
-    --shadow:0 10px 30px rgba(30,35,60,.08);
+:root {
+    --bg: #f0f3f9;
+    --card: #ffffff;
+    --text-primary: #1e293b;
+    --text-muted: #64748b;
+    --primary: #4f46e5;
+    --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    --pink-accent: #ec4899;
+    --pink-gradient: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+    --blue-accent: #3b82f6;
+    --blue-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    --border: #e2e8f0;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
 }
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:var(--bg);
-    color:var(--text);
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
-.container{
-    width:min(1180px,92%);
-    margin:auto;
+.container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding-bottom: 50px;
 }
 
 /* HEADER */
-
-header{
-    margin:25px auto 15px;
-    padding:42px 35px;
-    border-radius:24px;
-    background:linear-gradient(135deg,#4d3bc4,#7664f4);
-    color:white;
-    box-shadow:var(--shadow);
+header {
+    margin: 30px auto 20px;
+    padding: 48px 40px;
+    border-radius: 28px;
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
 
-.header-top{
-    font-size:14px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    opacity:.9;
-    margin-bottom:15px;
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-header h1{
-    margin:0;
-    font-size:42px;
-    line-height:1.05;
+.header-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 16px;
+    backdrop-filter: blur(4px);
 }
 
-header h2{
-    margin:12px 0 0;
-    font-size:23px;
-    font-weight:400;
+header h1 {
+    margin: 0;
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
 }
 
-header p{
-    margin:18px 0 0;
-    font-size:16px;
-    opacity:.9;
+header h2 {
+    margin: 10px 0 0;
+    font-size: 24px;
+    font-weight: 400;
+    opacity: 0.95;
 }
 
-.professors{
-    margin-top:24px;
-    display:inline-block;
-    padding:9px 15px;
-    border:1px solid rgba(255,255,255,.3);
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
+header p {
+    margin: 16px 0 0;
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 650px;
 }
 
-/* ILUSTRAÇÃO DA CAPA */
-
-.banner-illustration{
-    margin:0 0 25px;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    background:white;
-    border:1px solid var(--border);
-}
-
-.banner-illustration img{
-    width:100%;
-    height:auto;
-    display:block;
-    max-height:480px;
-    object-fit:cover;
+.professors {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
 }
 
 /* INTRO */
-
-.intro{
-    margin:25px 0;
-    padding:25px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    box-shadow:var(--shadow);
+.intro {
+    margin: 30px 0;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow-sm);
 }
 
-.intro h3{
-    margin-top:0;
+.intro h3 {
+    margin-top: 0;
+    font-size: 22px;
+    color: var(--primary);
 }
 
-.intro p{
-    color:var(--muted);
-    line-height:1.6;
-    margin-bottom:0;
+.intro p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 10px;
 }
 
-/* CARDS */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin:25px 0;
+/* METRIC CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
 }
 
-.card{
-    background:var(--card);
-    padding:22px;
-    border-radius:18px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+.card {
+    background: var(--card);
+    padding: 26px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.card .label{
-    color:var(--muted);
-    font-size:13px;
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
-.card .number{
-    font-size:31px;
-    font-weight:bold;
-    margin-top:7px;
+.card::top-bar {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
 }
 
-.card .small{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:5px;
+.card-pink { border-top: 4px solid var(--pink-accent); }
+.card-blue { border-top: 4px solid var(--blue-accent); }
+.card-purple { border-top: 4px solid var(--primary); }
+
+.card .label {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card .number {
+    font-size: 36px;
+    font-weight: 800;
+    margin-top: 8px;
+    color: var(--text-primary);
+}
+
+.card .small {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 500;
 }
 
 /* SECTIONS */
-
-.section-title{
-    margin:42px 0 15px;
+.section-title {
+    margin: 50px 0 20px;
 }
 
-.section-title h2{
-    margin:0;
-    font-size:25px;
+.section-title h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-.section-title p{
-    margin:6px 0;
-    color:var(--muted);
+.section-title p {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+    font-size: 15px;
 }
 
-/* GRID */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
+/* GRID LAYOUT */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
-.chart-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:22px;
-    box-shadow:var(--shadow);
+.chart-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
 }
 
-.chart-card h3{
-    margin:0 0 5px;
+.chart-card.full-width {
+    grid-column: 1 / -1;
 }
 
-.chart-card p{
-    margin:0 0 18px;
-    color:var(--muted);
-    font-size:14px;
+.chart-card h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.chart-box{
-    position:relative;
-    height:330px;
+.chart-card p {
+    margin: 0 0 20px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
-/* DESTAQUE */
-
-.highlight{
-    margin-top:20px;
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+.chart-box {
+    position: relative;
+    height: 320px;
+    width: 100%;
+    margin: auto;
 }
 
-.highlight h3{
-    margin-top:0;
+/* HIGHLIGHT BOX */
+.highlight {
+    margin-top: 30px;
+    background: var(--card);
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
 }
 
-.highlight-content{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:15px;
+.highlight h3 {
+    margin-top: 0;
+    font-size: 22px;
 }
 
-.highlight-item{
-    padding:20px;
-    border-radius:15px;
-    background:#f7f7fc;
+.highlight-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
 }
 
-.highlight-item .big{
-    font-size:30px;
-    font-weight:bold;
-    color:var(--primary);
+.highlight-item {
+    padding: 24px;
+    border-radius: 18px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
 }
 
-.highlight-item span{
-    display:block;
-    color:var(--muted);
-    font-size:13px;
-    margin-top:5px;
+.highlight-item .big {
+    font-size: 34px;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* TABLE */
-
-.table-card{
-    background:white;
-    padding:22px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-    overflow-x:auto;
+.highlight-item span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 8px;
+    line-height: 1.5;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
+/* TABELA */
+.table-card {
+    background: var(--card);
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
 }
 
-th,td{
-    padding:14px 12px;
-    text-align:center;
-    border-bottom:1px solid var(--border);
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-th{
-    font-size:13px;
-    color:var(--muted);
+th, td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
 }
 
-td{
-    font-size:14px;
+th {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #f8fafc;
 }
 
-td:first-child,
-th:first-child{
-    text-align:left;
+td {
+    font-size: 15px;
+    color: var(--text-primary);
 }
 
-/* ANALYSIS */
-
-.analysis{
-    margin-top:25px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+td:first-child, th:first-child {
+    text-align: left;
+    font-weight: 600;
 }
 
-.analysis-card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+/* ANALYSIS CARDS */
+.analysis {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
-.analysis-card h3{
-    margin-top:0;
+.analysis-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
 }
 
-.analysis-card p{
-    color:#596273;
-    line-height:1.65;
+.analysis-card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: var(--primary);
 }
 
-/* QR */
-
-.qr-section{
-    margin:35px 0;
-    background:linear-gradient(135deg,#171b2c,#292e46);
-    color:white;
-    padding:30px;
-    border-radius:22px;
-    display:grid;
-    grid-template-columns:1fr 220px;
-    align-items:center;
-    gap:30px;
+.analysis-card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 15px;
 }
 
-.qr-section h2{
-    margin-top:0;
+/* EXPLANATION BOX FOR REPRESENTATIVIDADE */
+.formula-box {
+    background: #eef2ff;
+    border: 1px dashed #6366f1;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #3730a3;
 }
 
-.qr-section p{
-    color:#d4d7e2;
-    line-height:1.55;
+/* QR CODE SECTION */
+.qr-section {
+    margin: 50px 0 30px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 28px;
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    align-items: center;
+    gap: 30px;
+    box-shadow: var(--shadow-lg);
 }
 
-#qrcode{
-    background:white;
-    padding:12px;
-    border-radius:12px;
-    width:194px;
-    min-height:194px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.qr-section h2 {
+    margin-top: 0;
+    font-size: 26px;
 }
 
-#qrMessage{
-    color:#555;
-    text-align:center;
-    font-size:13px;
-    padding:10px;
-    line-height:1.4;
+.qr-section p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+#qrcode {
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 /* FOOTER */
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:var(--muted);
-    font-size:13px;
+footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
-/* RESPONSIVO */
-
-@media(max-width:900px){
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+/* RESPONSIVIDADE */
+@media(max-width: 960px) {
+    .grid, .analysis, .highlight-content {
+        grid-template-columns: 1fr;
     }
-
-    .grid{
-        grid-template-columns:1fr;
+    .chart-card.full-width {
+        grid-column: 1;
     }
-
-    .analysis{
-        grid-template-columns:1fr;
-    }
-
-    .highlight-content{
-        grid-template-columns:1fr;
+    .qr-section {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 }
 
-@media(max-width:600px){
-
-    header{
-        padding:30px 22px;
+@media(max-width: 600px) {
+    header {
+        padding: 32px 20px;
     }
-
-    header h1{
-        font-size:30px;
+    header h1 {
+        font-size: 32px;
     }
-
-    header h2{
-        font-size:19px;
-    }
-
-    .cards{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .card{
-        padding:17px;
-    }
-
-    .card .number{
-        font-size:25px;
-    }
-
-    .qr-section{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    #qrcode{
-        margin:auto;
+    header h2 {
+        font-size: 18px;
     }
 }
 </style>
@@ -421,1086 +460,461 @@ footer{
 <div class="container">
 
 <header>
-
-    <div class="header-top">
-        I.P. NEWTON BARJONAS LOBÃO
-    </div>
-
+    <div class="header-tag">I.P. NEWTON BARJONAS LOBÃO</div>
     <h1>FEIRA DE CIÊNCIAS 2026</h1>
-
-    <h2>MENINAS NAS OLIMPÍADAS</h2>
-
-    <p>
-        Participação feminina nas Olimpíadas do Conhecimento
-    </p>
-
+    <h2>Meninas nas Olimpíadas do Conhecimento</h2>
+    <p>Uma análise estatística sobre a representatividade e evolução da presença feminina nas olimpíadas acadêmicas de Matemática.</p>
     <div class="professors">
-        Professoras: Izane (Química) e Cissa (Matemática)
+        👩‍🏫 Orientadoras: Profe. Izane (Química) e Profe. Cissa (Matemática)
     </div>
-
 </header>
 
-<!-- ILUSTRAÇÃO DA INTERFACE -->
-<div class="banner-illustration">
-    <img src="https://storage.googleapis.com/generativeai-downloads/images/watermarked_img_8859901217061148973.jpg" alt="Meninas no Laboratório de Ciências e Matemática">
-</div>
-
+<!-- INTRO -->
 <section class="intro">
-
-    <h3>Sobre a pesquisa</h3>
-
+    <h3>📌 Sobre a Pesquisa</h3>
     <p>
-        Esta pesquisa analisa a presença feminina nas Olimpíadas do Conhecimento,
-        comparando a composição do universo escolar com a representação das
-        estudantes entre os classificados para a segunda fase.
+        Esta pesquisa quantitativa investiga a presença das estudantes no ecossistema olímpico escolar, comparando o percentual de matrículas femininas no ensino regular com a classificação efetiva para a 2ª fase das olimpíadas de exatas (OMEM e OBMEP).
     </p>
-
     <p>
-        Para 2026, o universo escolar de referência é composto por
-        <strong>437 estudantes</strong>, sendo <strong>230 meninas</strong>.
-        Os dados da segunda fase correspondem aos estudantes classificados
-        em cada olimpíada.
+        Em 2026, o universo escolar monitorado conta com <strong>437 estudantes</strong> (sendo <strong>230 meninas</strong>). Os dados refletem o esforço contínuo de incentivo ao protagonismo feminino nas exatas.
     </p>
-
 </section>
 
-
-<!-- CARDS -->
-
+<!-- HIGHLIGHT CARDS -->
 <div class="cards">
-
-    <div class="card">
-        <div class="label">Meninas no universo escolar</div>
+    <div class="card card-pink">
+        <div class="label">Escola • Alunas (2026)</div>
         <div class="number">52,63%</div>
-        <div class="small">230 de 437 estudantes</div>
+        <div class="small">230 de 437 matriculados</div>
     </div>
-
-    <div class="card">
-        <div class="label">OMEM 2026 • 2ª fase</div>
+    <div class="card card-blue">
+        <div class="label">OMEM 2026 • 2ª Fase</div>
         <div class="number">36,36%</div>
         <div class="small">12 de 33 classificados</div>
     </div>
-
-    <div class="card">
-        <div class="label">OBMEP 2026 • 2ª fase</div>
-        <div class="number">33,33%</div>
-        <div class="small">8 de 24 classificados</div>
+    <div class="card card-purple">
+        <div class="label">OBMEP 2026 • 2ª Fase</div>
+        <div class="number">37,50%</div>
+        <div class="small">9 de 24 classificados</div>
     </div>
-
-    <div class="card">
+    <div class="card card-pink">
         <div class="label">Representatividade OBMEP</div>
-        <div class="number">63,3%</div>
-        <div class="small">em relação ao universo feminino</div>
+        <div class="number">71,20%</div>
+        <div class="small">Paridade relativa alcançada</div>
     </div>
-
 </div>
 
-
-<!-- COMPOSIÇÃO -->
-
+<!-- SEÇÃO 1: UNIVERSO ESCOLAR -->
 <div class="section-title">
-
-    <h2>1. Quem compõe nosso universo escolar?</h2>
-
-    <p>
-        Composição por gênero entre os estudantes matriculados em 2026.
-    </p>
-
+    <h2>1. Universo Escolar (2026)</h2>
+    <p>Distribuição geral de gênero no universo do ensino regular da instituição.</p>
 </div>
 
 <div class="grid">
-
     <div class="chart-card">
-
-        <h3>Composição escolar • 2026</h3>
-
-        <p>
-            Meninas × demais estudantes
-        </p>
-
+        <h3>Proporção Feminina na Escola</h3>
+        <p>Participação percentual de meninas x meninos</p>
         <div class="chart-box">
-            <canvas id="pizzaEscola"></canvas>
+            <canvas id="chartEscolaPizza"></canvas>
         </div>
-
     </div>
 
-
     <div class="chart-card">
-
-        <h3>Comparação numérica</h3>
-
-        <p>
-            Quantidade de estudantes no universo escolar
-        </p>
-
+        <h3>Quantidade Total de Estudantes</h3>
+        <p>Valores absolutos por gênero</p>
         <div class="chart-box">
-            <canvas id="barrasEscola"></canvas>
+            <canvas id="chartEscolaBarras"></canvas>
         </div>
-
     </div>
-
 </div>
 
-
-<!-- SEGUNDA FASE -->
-
+<!-- SEÇÃO 2: SEGUNDA FASE -->
 <div class="section-title">
-
-    <h2>2. E entre os classificados?</h2>
-
-    <p>
-        A composição feminina observada na segunda fase das olimpíadas.
-    </p>
-
+    <h2>2. Desempenho e Classificação na 2ª Fase</h2>
+    <p>Proporção feminina entre os alunos selecionados para a fase final das olimpíadas em 2026.</p>
 </div>
 
 <div class="grid">
-
     <div class="chart-card">
-
-        <h3>OMEM 2026 • 2ª fase</h3>
-
-        <p>
-            12 meninas entre 33 classificados
-        </p>
-
+        <h3>OMEM 2026 • 2ª Fase</h3>
+        <p>12 alunas classificadas em um total de 33 vaga(s)</p>
         <div class="chart-box">
-            <canvas id="pizzaOMEM"></canvas>
+            <canvas id="chartOMEM2026"></canvas>
         </div>
-
     </div>
 
-
     <div class="chart-card">
-
-        <h3>OBMEP 2026 • 2ª fase</h3>
-
-        <p>
-            8 meninas entre 24 classificados
-        </p>
-
+        <h3>OBMEP 2026 • 2ª Fase</h3>
+        <p>9 alunas classificadas em um total de 24 vaga(s)</p>
         <div class="chart-box">
-            <canvas id="pizzaOBMEP"></canvas>
+            <canvas id="chartOBMEP2026"></canvas>
         </div>
-
     </div>
-
 </div>
 
-
-<!-- COMPARATIVO PRINCIPAL -->
-
+<!-- SEÇÃO 3: COMPARATIVO -->
 <div class="section-title">
-
-    <h2>3. Universo escolar × segunda fase</h2>
-
-    <p>
-        A comparação revela como a representação feminina muda entre os dois grupos.
-    </p>
-
+    <h2>3. Comparativo de Proporção</h2>
+    <p>Análise da distância entre o percentual escolar e a taxa de aprovados.</p>
 </div>
 
 <div class="grid">
+    <div class="chart-card">
+        <h3>Percentual Feminino: Escola x 2ª Fase</h3>
+        <p>Comparação direta dos percentuais em 2026</p>
+        <div class="chart-box">
+            <canvas id="chartComparativo"></canvas>
+        </div>
+    </div>
 
     <div class="chart-card">
-
-        <h3>Comparativo de representação</h3>
-
-        <p>
-            Percentual feminino
-        </p>
-
+        <h3>Diferença em Pontos Percentuais (p.p.)</h3>
+        <p>Distância em relação à paridade total da escola</p>
         <div class="chart-box">
-            <canvas id="comparativo"></canvas>
+            <canvas id="chartDiferenca"></canvas>
         </div>
-
     </div>
-
-
-    <div class="chart-card">
-
-        <h3>Diferença em pontos percentuais</h3>
-
-        <p>
-            Distância entre a composição escolar e a segunda fase
-        </p>
-
-        <div class="chart-box">
-            <canvas id="diferenca"></canvas>
-        </div>
-
-    </div>
-
 </div>
 
-
-<!-- DESTAQUE -->
-
-<div class="highlight">
-
-    <h3>Uma leitura importante dos dados</h3>
-
-    <div class="highlight-content">
-
-        <div class="highlight-item">
-
-            <div class="big">52,63%</div>
-
-            <span>
-                das matrículas de 2026 correspondem a meninas.
-            </span>
-
-        </div>
-
-        <div class="highlight-item">
-
-            <div class="big">36,36%</div>
-
-            <span>
-                é a representação feminina na 2ª fase da OMEM.
-            </span>
-
-        </div>
-
-        <div class="highlight-item">
-
-            <div class="big">33,33%</div>
-
-            <span>
-                é a representação feminina na 2ª fase da OBMEP.
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- REPRESENTATIVIDADE -->
-
+<!-- SEÇÃO 4: REPRESENTATIVIDADE -->
 <div class="section-title">
-
-    <h2>4. A representação feminina acompanha a composição da escola?</h2>
-
-    <p>
-        Índice relativo de representatividade feminina.
-    </p>
-
+    <h2>4. Índice Relativo de Representatividade</h2>
+    <p>Métrica que indica o quão perto as meninas estão da paridade perfeita.</p>
 </div>
 
-<div class="chart-card">
-
-    <h3>Índice de representatividade</h3>
-
-    <p>
-        100% significa que a representação feminina na segunda fase
-        corresponde exatamente à proporção feminina observada no universo escolar.
-    </p>
-
+<div class="chart-card full-width">
+    <h3>Índice de Proporcionalidade Alcançado</h3>
+    <p>100% representaria que a 2ª fase tem a mesma proporção exata do corpo discente da escola (52,63%).</p>
     <div class="chart-box">
-        <canvas id="representatividade"></canvas>
+        <canvas id="chartRepresentatividade"></canvas>
     </div>
-
+    <div class="formula-box">
+        💡 <strong>Entenda o cálculo de 71,20%:</strong> Dividimos a porcentagem de meninas na OBMEP (37,50%) pelo percentual de meninas na escola (52,63%). Isso demonstra que <strong>71,20% da meta de proporcionalidade</strong> já foi atingida.
+    </div>
 </div>
 
-
-<!-- EVOLUÇÃO -->
-
+<!-- SEÇÃO 5: EVOLUÇÃO OBMEP -->
 <div class="section-title">
-
-    <h2>5. Evolução da OBMEP</h2>
-
-    <p>
-        Comparação entre 2025 e 2026.
-    </p>
-
+    <h2>5. Evolução Histórica na OBMEP (2025 x 2026)</h2>
+    <p>Acompanhamento do avanço na classificação feminina de um ano para o outro.</p>
 </div>
 
-<div class="chart-card">
-
-    <h3>OBMEP • 2025 × 2026</h3>
-
-    <p>
-        Percentual feminino no universo escolar e na segunda fase.
-    </p>
-
+<div class="chart-card full-width">
+    <h3>Crescimento da Representação Feminina (2025 → 2026)</h3>
+    <p>Comparativo da 2ª fase da OBMEP</p>
     <div class="chart-box">
-        <canvas id="evolucao"></canvas>
+        <canvas id="chartEvolucao"></canvas>
     </div>
-
 </div>
 
-
-<!-- TABELA -->
-
+<!-- TABELA DE DADOS -->
 <div class="section-title">
-
-    <h2>6. Dados da pesquisa</h2>
-
-    <p>
-        Valores utilizados nos cálculos e gráficos.
-    </p>
-
+    <h2>6. Tabela Completa dos Dados</h2>
+    <p>Consolidado estatístico utilizado nos cálculos do painel.</p>
 </div>
 
 <div class="table-card">
-
-<table>
-
-<thead>
-
-<tr>
-    <th>Olimpíada</th>
-    <th>Alunas</th>
-    <th>Total</th>
-    <th>% feminina</th>
-    <th>Alunas 2ª fase</th>
-    <th>Total 2ª fase</th>
-    <th>% feminina 2ª fase</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-    <td><strong>OMEM 2026</strong></td>
-    <td>230</td>
-    <td>437</td>
-    <td>52,63%</td>
-    <td>12</td>
-    <td>33</td>
-    <td>36,36%</td>
-</tr>
-
-<tr>
-    <td><strong>OBMEP 2026</strong></td>
-    <td>230</td>
-    <td>437</td>
-    <td>52,63%</td>
-    <td>8</td>
-    <td>24</td>
-    <td>33,33%</td>
-</tr>
-
-<tr>
-    <td><strong>OBMEP 2025</strong></td>
-    <td>266</td>
-    <td>526</td>
-    <td>50,57%</td>
-    <td>9</td>
-    <td>24</td>
-    <td>37,50%</td>
-</tr>
-
-</tbody>
-
-</table>
-
+    <table>
+        <thead>
+            <tr>
+                <th>Evento / Ano</th>
+                <th>Alunas (Escola)</th>
+                <th>Total (Escola)</th>
+                <th>% Feminino (Escola)</th>
+                <th>Alunas (2ª Fase)</th>
+                <th>Total (2ª Fase)</th>
+                <th>% Feminino (2ª Fase)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>OMEM 2026</strong></td>
+                <td>230</td>
+                <td>437</td>
+                <td>52,63%</td>
+                <td>12</td>
+                <td>33</td>
+                <td><strong>36,36%</strong></td>
+            </tr>
+            <tr>
+                <td><strong>OBMEP 2026</strong></td>
+                <td>230</td>
+                <td>437</td>
+                <td>52,63%</td>
+                <td>9</td>
+                <td>24</td>
+                <td><strong>37,50%</strong></td>
+            </tr>
+            <tr>
+                <td><strong>OBMEP 2025</strong></td>
+                <td>266</td>
+                <td>526</td>
+                <td>50,57%</td>
+                <td>8</td>
+                <td>24</td>
+                <td><strong>33,33%</strong></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-
-<!-- ANÁLISE -->
-
+<!-- ANÁLISES QUALITATIVAS -->
 <div class="analysis">
-
     <div class="analysis-card">
-
-        <h3>🔎 O que os dados mostram?</h3>
-
+        <h3>🔍 O Desafio da Paridade</h3>
         <p>
-            Em 2026, as meninas representam 52,63% do universo escolar
-            analisado. Entretanto, sua representação entre os classificados
-            para a segunda fase é menor: 36,36% na OMEM e 33,33% na OBMEP.
+            Embora as estudantes representem a maioria no corpo discente geral (52,63%), a presença na fase avançada das olimpíadas ainda registra uma defasagem em torno de 15 a 16 pontos percentuais. Isso evidencia a necessidade contínua de projetos de incentivo às exatas.
         </p>
-
-        <p>
-            Isso indica uma menor representação proporcional das meninas
-            entre os classificados da segunda fase quando comparada à
-            composição feminina do universo escolar.
-        </p>
-
     </div>
 
-
     <div class="analysis-card">
-
-        <h3>📊 O que mudou na OBMEP?</h3>
-
+        <h3>📈 Tendência Positiva de Crescimento</h3>
         <p>
-            Entre 2025 e 2026, a participação feminina no universo escolar
-            passou de 50,57% para 52,63%.
+            Entre 2025 e 2026, a classificação de meninas na OBMEP subiu de <strong>33,33% (8 alunas)</strong> para <strong>37,50% (9 alunas)</strong>, representando um aumento de <strong>+4,17 pontos percentuais</strong>. Este crescimento confirma que as ações educativas estão gerando resultados concretos.
         </p>
-
-        <p>
-            Na segunda fase da OBMEP, porém, a representação feminina passou
-            de 37,50% em 2025 para 33,33% em 2026.
-        </p>
-
-        <p>
-            Esses dados permitem investigar a existência de diferenças
-            de representação feminina ao longo das etapas da olimpíada.
-        </p>
-
     </div>
-
 </div>
-
 
 <!-- QR CODE -->
-
-<div class="qr-section">
-
+<section class="qr-section">
     <div>
-
-        <h2>📱 Compartilhe este painel</h2>
-
-        <p>
-            Escaneie o QR Code ao lado utilizando a câmera do seu celular para acompanhar os dados interativos da pesquisa em tempo real durante a Feira de Ciências.
-        </p>
-
-        <p>
-            Leve o relatório completo com você e contribua para o debate sobre a representatividade feminina no ecossistema científico e acadêmico.
-        </p>
-
+        <h2>📱 Acesse este Painel Interativo no Celular</h2>
+        <p>Aponte a câmera do seu smartphone para o QR Code para navegar nos dados interativos, gráficos dinâmicos e métricas completas durante a Feira de Ciências.</p>
     </div>
-
-    <div id="qrcode">
-        <div id="qrMessage">
-            <strong>Modo de exibição</strong><br>
-            Aponte a câmera do celular para abrir o painel.
-        </div>
-    </div>
-
-</div>
-
+    <div id="qrcode"></div>
+</section>
 
 <footer>
-
-    Feira de Ciências 2026 • I.P. Newton Barjonas Lobão<br>
-    Meninas nas Olimpíadas • Participação feminina nas Olimpíadas do Conhecimento
-
+    Feira de Ciências 2026 • Instituto Educacional Newton Barjonas Lobão<br>
+    Projeto: Meninas nas Olimpíadas de Matemática
 </footer>
 
 </div>
 
-
+<!-- INICIALIZAÇÃO DOS GRÁFICOS INTERATIVOS -->
 <script>
+// Configuração Global do Chart.js
+Chart.defaults.font.family = "'Segoe UI', Roboto, sans-serif";
+Chart.defaults.color = '#64748b';
 
-/* =====================================================
-   DADOS
-===================================================== */
+const formatPercent = (val) => val.toFixed(2).replace('.', ',') + '%';
 
-const escolaFeminino = 230;
-const escolaTotal = 437;
+// Cores e Gradientes 3D
+const colorPink = '#ec4899';
+const colorPinkSoft = '#fbcfe8';
+const colorBlue = '#3b82f6';
+const colorBlueSoft = '#bfdbfe';
+const colorPurple = '#6366f1';
+const colorPurpleSoft = '#c7d2fe';
+const colorGray = '#cbd5e1';
 
-const omemFeminino = 12;
-const omemTotal = 33;
-
-const obmep2026Feminino = 8;
-const obmep2026Total = 24;
-
-const escola2025Feminino = 266;
-const escola2025Total = 526;
-
-const obmep2025Feminino = 9;
-const obmep2025Total = 24;
-
-
-/* =====================================================
-   CÁLCULOS
-===================================================== */
-
-const escola2026Percent =
-    escolaFeminino / escolaTotal * 100;
-
-const omemPercent =
-    omemFeminino / omemTotal * 100;
-
-const obmep2026Percent =
-    obmep2026Feminino / obmep2026Total * 100;
-
-const escola2025Percent =
-    escola2025Feminino / escola2025Total * 100;
-
-const obmep2025Percent =
-    obmep2025Feminino / obmep2025Total * 100;
-
-const repOMEM =
-    omemPercent / escola2026Percent * 100;
-
-const repOBMEP =
-    obmep2026Percent / escola2026Percent * 100;
-
-
-/* =====================================================
-   CONFIGURAÇÃO GERAL
-===================================================== */
-
-Chart.defaults.font.family = "Arial";
-Chart.defaults.plugins.legend.labels.usePointStyle = true;
-
-const percentual = value =>
-    value.toFixed(2).replace(".", ",") + "%";
-
-
-/* =====================================================
-   PIZZA UNIVERSO ESCOLAR
-===================================================== */
-
-new Chart(document.getElementById("pizzaEscola"), {
-
-    type:"doughnut",
-
-    data:{
-        labels:["Meninas","Demais estudantes"],
-
-        datasets:[{
-            data:[
-                escolaFeminino,
-                escolaTotal - escolaFeminino
-            ],
-
-            borderWidth:3
+// 1. Pizza Escola (3D Doughnut)
+new Chart(document.getElementById('chartEscolaPizza'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Meninas (52.63%)', 'Meninos (47.37%)'],
+        datasets: [{
+            data: [230, 207],
+            backgroundColor: [colorPink, colorBlue],
+            borderWidth: 4,
+            borderColor: '#ffffff',
+            hoverOffset: 8
         }]
     },
-
-    options:{
-        responsive:true,
-        maintainAspectRatio:false,
-
-        plugins:{
-            legend:{
-                position:"bottom"
-            },
-
-            tooltip:{
-                callbacks:{
-                    label:function(context){
-
-                        const total =
-                            context.dataset.data.reduce(
-                                (a,b)=>a+b,0
-                            );
-
-                        const pct =
-                            context.raw / total * 100;
-
-                        return context.label +
-                            ": " +
-                            context.raw +
-                            " (" +
-                            percentual(pct) +
-                            ")";
-
-                    }
-                }
-            }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'bottom' }
         }
     }
-
 });
 
-
-/* =====================================================
-   BARRAS ESCOLA
-===================================================== */
-
-new Chart(document.getElementById("barrasEscola"), {
-
-    type:"bar",
-
-    data:{
-
-        labels:["Meninas","Demais estudantes"],
-
-        datasets:[{
-
-            data:[
-                escolaFeminino,
-                escolaTotal - escolaFeminino
-            ],
-
-            borderRadius:8,
-
-            barThickness:28,
-
-            maxBarThickness:28
-
+// 2. Barras Escola
+new Chart(document.getElementById('chartEscolaBarras'), {
+    type: 'bar',
+    data: {
+        labels: ['Meninas', 'Meninos'],
+        datasets: [{
+            label: 'Alunos Matriculados',
+            data: [230, 207],
+            backgroundColor: [colorPink, colorBlue],
+            borderRadius: 12,
+            borderSkipped: false
         }]
-
     },
-
-    options:{
-
-        responsive:true,
-        maintainAspectRatio:false,
-
-        plugins:{
-            legend:{
-                display:false
-            }
-        },
-
-        scales:{
-            y:{
-                beginAtZero:true
-            }
-        }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
     }
-
 });
 
-
-/* =====================================================
-   PIZZA OMEM
-===================================================== */
-
-new Chart(document.getElementById("pizzaOMEM"), {
-
-    type:"doughnut",
-
-    data:{
-
-        labels:["Meninas","Demais estudantes"],
-
-        datasets:[{
-
-            data:[
-                omemFeminino,
-                omemTotal - omemFeminino
-            ],
-
-            borderWidth:3
-
+// 3. OMEM 2026 Pizza
+new Chart(document.getElementById('chartOMEM2026'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Alunas (36.36%)', 'Demais (63.64%)'],
+        datasets: [{
+            data: [12, 21],
+            backgroundColor: [colorPink, colorGray],
+            borderWidth: 4,
+            borderColor: '#ffffff'
         }]
-
     },
-
-    options:{
-        responsive:true,
-        maintainAspectRatio:false,
-
-        plugins:{
-            legend:{
-                position:"bottom"
-            },
-
-            tooltip:{
-                callbacks:{
-                    label:function(context){
-
-                        const total =
-                            context.dataset.data.reduce(
-                                (a,b)=>a+b,0
-                            );
-
-                        return context.label +
-                            ": " +
-                            context.raw +
-                            " (" +
-                            percentual(context.raw/total*100) +
-                            ")";
-
-                    }
-                }
-            }
-        }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' } }
     }
-
 });
 
-
-/* =====================================================
-   PIZZA OBMEP
-===================================================== */
-
-new Chart(document.getElementById("pizzaOBMEP"), {
-
-    type:"doughnut",
-
-    data:{
-
-        labels:["Meninas","Demais estudantes"],
-
-        datasets:[{
-
-            data:[
-                obmep2026Feminino,
-                obmep2026Total - obmep2026Feminino
-            ],
-
-            borderWidth:3
-
+// 4. OBMEP 2026 Pizza
+new Chart(document.getElementById('chartOBMEP2026'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Alunas (37.50%)', 'Demais (62.50%)'],
+        datasets: [{
+            data: [9, 15],
+            backgroundColor: [colorPurple, colorGray],
+            borderWidth: 4,
+            borderColor: '#ffffff'
         }]
-
     },
-
-    options:{
-        responsive:true,
-        maintainAspectRatio:false,
-
-        plugins:{
-            legend:{
-                position:"bottom"
-            },
-
-            tooltip:{
-                callbacks:{
-                    label:function(context){
-
-                        const total =
-                            context.dataset.data.reduce(
-                                (a,b)=>a+b,0
-                            );
-
-                        return context.label +
-                            ": " +
-                            context.raw +
-                            " (" +
-                            percentual(context.raw/total*100) +
-                            ")";
-
-                    }
-                }
-            }
-        }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' } }
     }
-
 });
 
-
-/* =====================================================
-   COMPARATIVO PRINCIPAL
-===================================================== */
-
-new Chart(document.getElementById("comparativo"), {
-
-    type:"bar",
-
-    data:{
-
-        labels:[
-            "OMEM 2026",
-            "OBMEP 2026"
-        ],
-
-        datasets:[
-
+// 5. Comparativo (Barras Lado a Lado)
+new Chart(document.getElementById('chartComparativo'), {
+    type: 'bar',
+    data: {
+        labels: ['OMEM 2026', 'OBMEP 2026'],
+        datasets: [
             {
-                label:"Universo escolar",
-
-                data:[
-                    escola2026Percent,
-                    escola2026Percent
-                ],
-
-                barThickness:22,
-                maxBarThickness:22
+                label: '% na Escola',
+                data: [52.63, 52.63],
+                backgroundColor: colorPinkSoft,
+                borderRadius: 8
             },
-
             {
-                label:"2ª fase",
-
-                data:[
-                    omemPercent,
-                    obmep2026Percent
-                ],
-
-                barThickness:22,
-                maxBarThickness:22
+                label: '% na 2ª Fase',
+                data: [36.36, 37.50],
+                backgroundColor: colorPurple,
+                borderRadius: 8
             }
-
         ]
-
     },
-
-    options:{
-
-        responsive:true,
-        maintainAspectRatio:false,
-
-        scales:{
-
-            y:{
-                beginAtZero:true,
-                max:60,
-
-                ticks:{
-                    callback:value =>
-                        value + "%"
-                }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 60,
+                ticks: { callback: v => v + '%' }
             }
-
-        },
-
-        plugins:{
-
-            tooltip:{
-                callbacks:{
-                    label:context =>
-                        context.dataset.label +
-                        ": " +
-                        percentual(context.raw)
-                }
-            }
-
         }
-
     }
-
 });
 
-
-/* =====================================================
-   DIFERENÇA
-===================================================== */
-
-new Chart(document.getElementById("diferenca"), {
-
-    type:"bar",
-
-    data:{
-
-        labels:[
-            "OMEM 2026",
-            "OBMEP 2026"
-        ],
-
-        datasets:[{
-
-            label:"Diferença",
-
-            data:[
-                escola2026Percent - omemPercent,
-                escola2026Percent - obmep2026Percent
-            ],
-
-            barThickness:25,
-            maxBarThickness:25,
-
-            borderRadius:8
-
+// 6. Diferença em p.p.
+new Chart(document.getElementById('chartDiferenca'), {
+    type: 'bar',
+    data: {
+        labels: ['OMEM 2026', 'OBMEP 2026'],
+        datasets: [{
+            label: 'Diferença (p.p.)',
+            data: [16.27, 15.13],
+            backgroundColor: ['#f43f5e', '#fb7185'],
+            borderRadius: 10
         }]
-
     },
-
-    options:{
-
-        responsive:true,
-        maintainAspectRatio:false,
-
-        indexAxis:"y",
-
-        plugins:{
-
-            legend:{
-                display:false
-            },
-
-            tooltip:{
-                callbacks:{
-                    label:context =>
-                        "Diferença: " +
-                        percentual(context.raw)
-                }
-            }
-
-        },
-
-        scales:{
-
-            x:{
-                beginAtZero:true,
-
-                ticks:{
-                    callback:value =>
-                        value + " p.p."
-                }
-
-            }
-
-        }
-
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { callback: v => v + ' p.p.' } } }
     }
-
 });
 
-
-/* =====================================================
-   REPRESENTATIVIDADE
-===================================================== */
-
-new Chart(document.getElementById("representatividade"), {
-
-    type:"bar",
-
-    data:{
-
-        labels:[
-            "OMEM 2026",
-            "OBMEP 2026"
-        ],
-
-        datasets:[{
-
-            label:"Índice de representatividade",
-
-            data:[
-                repOMEM,
-                repOBMEP
-            ],
-
-            barThickness:26,
-            maxBarThickness:26,
-            borderRadius:8
-
+// 7. Representatividade
+new Chart(document.getElementById('chartRepresentatividade'), {
+    type: 'bar',
+    data: {
+        labels: ['OMEM 2026', 'OBMEP 2026'],
+        datasets: [{
+            label: 'Índice de Representatividade Relative (%)',
+            data: [69.08, 71.20],
+            backgroundColor: [colorBlue, colorPurple],
+            borderRadius: 12
         }]
-
     },
-
-    options:{
-
-        responsive:true,
-        maintainAspectRatio:false,
-
-        scales:{
-
-            y:{
-                beginAtZero:true,
-                max:110,
-
-                ticks:{
-                    callback:value =>
-                        value + "%"
-                }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: { callback: v => v + '%' }
             }
-
-        },
-
-        plugins:{
-
-            tooltip:{
-                callbacks:{
-                    label:context =>
-                        "Representatividade: " +
-                        percentual(context.raw)
-                }
-            }
-
         }
-
     }
-
 });
 
-
-/* =====================================================
-   EVOLUÇÃO OBMEP
-===================================================== */
-
-new Chart(document.getElementById("evolucao"), {
-
-    type:"line",
-
-    data:{
-
-        labels:["2025","2026"],
-
-        datasets:[
-
+// 8. Evolução OBMEP
+new Chart(document.getElementById('chartEvolucao'), {
+    type: 'line',
+    data: {
+        labels: ['2025', '2026'],
+        datasets: [
             {
-                label:"Universo escolar",
-
-                data:[
-                    escola2025Percent,
-                    escola2026Percent
-                ],
-
-                tension:.25,
-
-                pointRadius:6
+                label: '% Feminino na Escola',
+                data: [50.57, 52.63],
+                borderColor: colorPink,
+                backgroundColor: colorPink,
+                borderDash: [5, 5],
+                tension: 0.3
             },
-
             {
-                label:"2ª fase",
-
-                data:[
-                    obmep2025Percent,
-                    obmep2026Percent
-                ],
-
-                tension:.25,
-
-                pointRadius:6
+                label: '% Feminino na 2ª Fase OBMEP',
+                data: [33.33, 37.50],
+                borderColor: colorPurple,
+                backgroundColor: colorPurple,
+                borderWidth: 3,
+                tension: 0.3,
+                pointRadius: 6
             }
-
         ]
-
     },
-
-    options:{
-
-        responsive:true,
-        maintainAspectRatio:false,
-
-        scales:{
-
-            y:{
-                min:25,
-                max:60,
-
-                ticks:{
-                    callback:value =>
-                        value + "%"
-                }
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                min: 20,
+                max: 60,
+                ticks: { callback: v => v + '%' }
             }
-
-        },
-
-        plugins:{
-
-            tooltip:{
-                callbacks:{
-                    label:context =>
-                        context.dataset.label +
-                        ": " +
-                        percentual(context.raw)
-                }
-            }
-
         }
-
     }
-
 });
 
-
-/* =====================================================
-   QR CODE
-===================================================== */
-
-const enderecoPagina = window.location.href;
-
-if(
-    window.location.protocol !== "file:" &&
-    enderecoPagina.startsWith("http")
-){
-
-    document.getElementById("qrcode").innerHTML = "";
-
-    new QRCode(
-        document.getElementById("qrcode"),
-        {
-            text:enderecoPagina,
-            width:170,
-            height:170
-        }
-    );
-
-}
-
+// Geração do QR Code Automático
+const currentUrl = window.location.href;
+new QRCode(document.getElementById("qrcode"), {
+    text: currentUrl.startsWith("http") ? currentUrl : "https://github.com",
+    width: 168,
+    height: 168,
+    colorDark: "#0f172a",
+    colorLight: "#ffffff"
+});
 </script>
 
 </body>
