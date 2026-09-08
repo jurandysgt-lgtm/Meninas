@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meninas nas Olimpíadas | Feira de Ciências 2026</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#697386;
+    --primary:#5b4bdb;
+    --primary2:#806cff;
+    --border:#e5e7ef;
+    --shadow:0 10px 30px rgba(30,35,60,.08);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    margin:25px auto;
+    padding:42px 35px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#4d3bc4,#7664f4);
+    color:white;
+    box-shadow:var(--shadow);
+}
+
+.header-top{
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.9;
+    margin-bottom:15px;
+}
+
+header h1{
+    margin:0;
+    font-size:42px;
+    line-height:1.05;
+}
+
+header h2{
+    margin:12px 0 0;
+    font-size:23px;
+    font-weight:400;
+}
+
+header p{
+    margin:18px 0 0;
+    font-size:16px;
+    opacity:.9;
+}
+
+.professors{
+    margin-top:24px;
+    display:inline-block;
+    padding:9px 15px;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:30px;
+    background:rgba(255,255,255,.12);
+}
+
+/* INTRO */
+
+.intro{
+    margin:25px 0;
+    padding:25px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.intro h3{
+    margin-top:0;
+}
+
+.intro p{
+    color:var(--muted);
+    line-height:1.6;
+    margin-bottom:0;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin:25px 0;
+}
+
+.card{
+    background:var(--card);
+    padding:22px;
+    border-radius:18px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.card .label{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.card .number{
+    font-size:31px;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+.card .small{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* SECTIONS */
+
+.section-title{
+    margin:42px 0 15px;
+}
+
+.section-title h2{
+    margin:0;
+    font-size:25px;
+}
+
+.section-title p{
+    margin:6px 0;
+    color:var(--muted);
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.chart-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.chart-card h3{
+    margin:0 0 5px;
+}
+
+.chart-card p{
+    margin:0 0 18px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.chart-box{
+    position:relative;
+    height:330px;
+}
+
+/* DESTAQUE */
+
+.highlight{
+    margin-top:20px;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.highlight h3{
+    margin-top:0;
+}
+
+.highlight-content{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:15px;
+}
+
+.highlight-item{
+    padding:20px;
+    border-radius:15px;
+    background:#f7f7fc;
+}
+
+.highlight-item .big{
+    font-size:30px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.highlight-item span{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* TABLE */
+
+.table-card{
+    background:white;
+    padding:22px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:14px 12px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    font-size:13px;
+    color:var(--muted);
+}
+
+td{
+    font-size:14px;
+}
+
+td:first-child,
+th:first-child{
+    text-align:left;
+}
+
+/* ANALYSIS */
+
+.analysis{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.analysis-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.analysis-card h3{
+    margin-top:0;
+}
+
+.analysis-card p{
+    color:#596273;
+    line-height:1.65;
+}
+
+/* QR */
+
+.qr-section{
+    margin:35px 0;
+    background:linear-gradient(135deg,#171b2c,#292e46);
+    color:white;
+    padding:30px;
+    border-radius:22px;
+    display:grid;
+    grid-template-columns:1fr 220px;
+    align-items:center;
+    gap:30px;
+}
+
+.qr-section h2{
+    margin-top:0;
+}
+
+.qr-section p{
+    color:#d4d7e2;
+    line-height:1.5;
+}
+
+#qrcode{
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    width:194px;
+    min-height:194px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#qrMessage{
+    color:#555;
+    text-align:center;
+    font-size:12px;
+    padding:10px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .analysis{
+        grid-template-columns:1fr;
+    }
+
+    .highlight-content{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:30px 22px;
+    }
+
+    header h1{
+        font-size:30px;
+    }
+
+    header h2{
+        font-size:19px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card{
+        padding:17px;
+    }
+
+    .card .number{
+        font-size:25px;
+    }
+
+    .qr-section{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    #qrcode{
+        margin:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="header-top">
+        I.P. NEWTON BARJONAS LOBÃO
+    </div>
+
+    <h1>FEIRA DE CIÊNCIAS 2026</h1>
+
+    <h2>MENINAS NAS OLIMPÍADAS</h2>
+
+    <p>
+        Participação feminina nas Olimpíadas do Conhecimento
+    </p>
+
+    <div class="professors">
+        Professoras: Izane (Química) e Cissa (Matemática)
+    </div>
+
+</header>
+
+
+<section class="intro">
+
+    <h3>Sobre a pesquisa</h3>
+
+    <p>
+        Esta pesquisa analisa a presença feminina nas Olimpíadas do Conhecimento,
+        comparando a composição do universo escolar com a representação das
+        estudantes entre os classificados para a segunda fase.
+    </p>
+
+    <p>
+        Para 2026, o universo escolar de referência é composto por
+        <strong>437 estudantes</strong>, sendo <strong>230 meninas</strong>.
+        Os dados da segunda fase correspondem aos estudantes classificados
+        em cada olimpíada.
+    </p>
+
+</section>
+
+
+<!-- CARDS -->
+
+<div class="cards">
+
+    <div class="card">
+        <div class="label">Meninas no universo escolar</div>
+        <div class="number">52,63%</div>
+        <div class="small">230 de 437 estudantes</div>
+    </div>
+
+    <div class="card">
+        <div class="label">OMEM 2026 • 2ª fase</div>
+        <div class="number">36,36%</div>
+        <div class="small">12 de 33 classificados</div>
+    </div>
+
+    <div class="card">
+        <div class="label">OBMEP 2026 • 2ª fase</div>
+        <div class="number">33,33%</div>
+        <div class="small">8 de 24 classificados</div>
+    </div>
+
+    <div class="card">
+        <div class="label">Representatividade OBMEP</div>
+        <div class="number">63,3%</div>
+        <div class="small">em relação ao universo feminino</div>
+    </div>
+
+</div>
+
+
+<!-- COMPOSIÇÃO -->
+
+<div class="section-title">
+
+    <h2>1. Quem compõe nosso universo escolar?</h2>
+
+    <p>
+        Composição por gênero entre os estudantes matriculados em 2026.
+    </p>
+
+</div>
+
+<div class="grid">
+
+    <div class="chart-card">
+
+        <h3>Composição escolar • 2026</h3>
+
+        <p>
+            Meninas × demais estudantes
+        </p>
+
+        <div class="chart-box">
+            <canvas id="pizzaEscola"></canvas>
+        </div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <h3>Comparação numérica</h3>
+
+        <p>
+            Quantidade de estudantes no universo escolar
+        </p>
+
+        <div class="chart-box">
+            <canvas id="barrasEscola"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SEGUNDA FASE -->
+
+<div class="section-title">
+
+    <h2>2. E entre os classificados?</h2>
+
+    <p>
+        A composição feminina observada na segunda fase das olimpíadas.
+    </p>
+
+</div>
+
+<div class="grid">
+
+    <div class="chart-card">
+
+        <h3>OMEM 2026 • 2ª fase</h3>
+
+        <p>
+            12 meninas entre 33 classificados
+        </p>
+
+        <div class="chart-box">
+            <canvas id="pizzaOMEM"></canvas>
+        </div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <h3>OBMEP 2026 • 2ª fase</h3>
+
+        <p>
+            8 meninas entre 24 classificados
+        </p>
+
+        <div class="chart-box">
+            <canvas id="pizzaOBMEP"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- COMPARATIVO PRINCIPAL -->
+
+<div class="section-title">
+
+    <h2>3. Universo escolar × segunda fase</h2>
+
+    <p>
+        A comparação revela como a representação feminina muda entre os dois grupos.
+    </p>
+
+</div>
+
+<div class="grid">
+
+    <div class="chart-card">
+
+        <h3>Comparativo de representação</h3>
+
+        <p>
+            Percentual feminino
+        </p>
+
+        <div class="chart-box">
+            <canvas id="comparativo"></canvas>
+        </div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <h3>Diferença em pontos percentuais</h3>
+
+        <p>
+            Distância entre a composição escolar e a segunda fase
+        </p>
+
+        <div class="chart-box">
+            <canvas id="diferenca"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- DESTAQUE -->
+
+<div class="highlight">
+
+    <h3>Uma leitura importante dos dados</h3>
+
+    <div class="highlight-content">
+
+        <div class="highlight-item">
+
+            <div class="big">52,63%</div>
+
+            <span>
+                das matrículas de 2026 correspondem a meninas.
+            </span>
+
+        </div>
+
+        <div class="highlight-item">
+
+            <div class="big">36,36%</div>
+
+            <span>
+                é a representação feminina na 2ª fase da OMEM.
+            </span>
+
+        </div>
+
+        <div class="highlight-item">
+
+            <div class="big">33,33%</div>
+
+            <span>
+                é a representação feminina na 2ª fase da OBMEP.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- REPRESENTATIVIDADE -->
+
+<div class="section-title">
+
+    <h2>4. A representação feminina acompanha a composição da escola?</h2>
+
+    <p>
+        Índice relativo de representatividade feminina.
+    </p>
+
+</div>
+
+<div class="chart-card">
+
+    <h3>Índice de representatividade</h3>
+
+    <p>
+        100% significa que a representação feminina na segunda fase
+        corresponde exatamente à proporção feminina observada no universo escolar.
+    </p>
+
+    <div class="chart-box">
+        <canvas id="representatividade"></canvas>
+    </div>
+
+</div>
+
+
+<!-- EVOLUÇÃO -->
+
+<div class="section-title">
+
+    <h2>5. Evolução da OBMEP</h2>
+
+    <p>
+        Comparação entre 2025 e 2026.
+    </p>
+
+</div>
+
+<div class="chart-card">
+
+    <h3>OBMEP • 2025 × 2026</h3>
+
+    <p>
+        Percentual feminino no universo escolar e na segunda fase.
+    </p>
+
+    <div class="chart-box">
+        <canvas id="evolucao"></canvas>
+    </div>
+
+</div>
+
+
+<!-- TABELA -->
+
+<div class="section-title">
+
+    <h2>6. Dados da pesquisa</h2>
+
+    <p>
+        Valores utilizados nos cálculos e gráficos.
+    </p>
+
+</div>
+
+<div class="table-card">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Olimpíada</th>
+    <th>Alunas</th>
+    <th>Total</th>
+    <th>% feminina</th>
+    <th>Alunas 2ª fase</th>
+    <th>Total 2ª fase</th>
+    <th>% feminina 2ª fase</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td><strong>OMEM 2026</strong></td>
+    <td>230</td>
+    <td>437</td>
+    <td>52,63%</td>
+    <td>12</td>
+    <td>33</td>
+    <td>36,36%</td>
+</tr>
+
+<tr>
+    <td><strong>OBMEP 2026</strong></td>
+    <td>230</td>
+    <td>437</td>
+    <td>52,63%</td>
+    <td>8</td>
+    <td>24</td>
+    <td>33,33%</td>
+</tr>
+
+<tr>
+    <td><strong>OBMEP 2025</strong></td>
+    <td>266</td>
+    <td>526</td>
+    <td>50,57%</td>
+    <td>9</td>
+    <td>24</td>
+    <td>37,50%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- ANÁLISE -->
+
+<div class="analysis">
+
+    <div class="analysis-card">
+
+        <h3>🔎 O que os dados mostram?</h3>
+
+        <p>
+            Em 2026, as meninas representam 52,63% do universo escolar
+            analisado. Entretanto, sua representação entre os classificados
+            para a segunda fase é menor: 36,36% na OMEM e 33,33% na OBMEP.
+        </p>
+
+        <p>
+            Isso indica uma menor representação proporcional das meninas
+            entre os classificados da segunda fase quando comparada à
+            composição feminina do universo escolar.
+        </p>
+
+    </div>
+
+
+    <div class="analysis-card">
+
+        <h3>📊 O que mudou na OBMEP?</h3>
+
+        <p>
+            Entre 2025 e 2026, a participação feminina no universo escolar
+            passou de 50,57% para 52,63%.
+        </p>
+
+        <p>
+            Na segunda fase da OBMEP, porém, a representação feminina passou
+            de 37,50% em 2025 para 33,33% em 2026.
+        </p>
+
+        <p>
+            Esses dados permitem investigar a existência de diferenças
+            de representação feminina ao longo das etapas da olimpíada.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- QR CODE -->
+
+<div class="qr-section">
+
+    <div>
+
+        <h2>📱 Acesse a pesquisa</h2>
+
+        <p>
+            Depois que este painel estiver hospedado na internet,
+            o QR Code poderá ser utilizado pelos visitantes da Feira
+            de Ciências para acessar os dados pelo celular.
+        </p>
+
+        <p>
+            <strong>
+                Se você abrir este arquivo diretamente no computador,
+                o QR Code ficará aguardando o endereço da página.
+            </strong>
+        </p>
+
+    </div>
+
+    <div id="qrcode">
+        <div id="qrMessage">
+            Publique o site<br>
+            para gerar o QR Code.
+        </div>
+    </div>
+
+</div>
+
+
+<footer>
+
+    Feira de Ciências 2026 • I.P. Newton Barjonas Lobão<br>
+    Meninas nas Olimpíadas • Participação feminina nas Olimpíadas do Conhecimento
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DADOS
+===================================================== */
+
+const escolaFeminino = 230;
+const escolaTotal = 437;
+
+const omemFeminino = 12;
+const omemTotal = 33;
+
+const obmep2026Feminino = 8;
+const obmep2026Total = 24;
+
+const escola2025Feminino = 266;
+const escola2025Total = 526;
+
+const obmep2025Feminino = 9;
+const obmep2025Total = 24;
+
+
+/* =====================================================
+   CÁLCULOS
+===================================================== */
+
+const escola2026Percent =
+    escolaFeminino / escolaTotal * 100;
+
+const omemPercent =
+    omemFeminino / omemTotal * 100;
+
+const obmep2026Percent =
+    obmep2026Feminino / obmep2026Total * 100;
+
+const escola2025Percent =
+    escola2025Feminino / escola2025Total * 100;
+
+const obmep2025Percent =
+    obmep2025Feminino / obmep2025Total * 100;
+
+const repOMEM =
+    omemPercent / escola2026Percent * 100;
+
+const repOBMEP =
+    obmep2026Percent / escola2026Percent * 100;
+
+
+/* =====================================================
+   CONFIGURAÇÃO GERAL
+===================================================== */
+
+Chart.defaults.font.family = "Arial";
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+const percentual = value =>
+    value.toFixed(2).replace(".", ",") + "%";
+
+
+/* =====================================================
+   PIZZA UNIVERSO ESCOLAR
+===================================================== */
+
+new Chart(document.getElementById("pizzaEscola"), {
+
+    type:"doughnut",
+
+    data:{
+        labels:["Meninas","Demais estudantes"],
+
+        datasets:[{
+            data:[
+                escolaFeminino,
+                escolaTotal - escolaFeminino
+            ],
+
+            borderWidth:3
+        }]
+    },
+
+    options:{
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                position:"bottom"
+            },
+
+            tooltip:{
+                callbacks:{
+                    label:function(context){
+
+                        const total =
+                            context.dataset.data.reduce(
+                                (a,b)=>a+b,0
+                            );
+
+                        const pct =
+                            context.raw / total * 100;
+
+                        return context.label +
+                            ": " +
+                            context.raw +
+                            " (" +
+                            percentual(pct) +
+                            ")";
+
+                    }
+                }
+            }
+        }
+    }
+
+});
+
+
+/* =====================================================
+   BARRAS ESCOLA
+===================================================== */
+
+new Chart(document.getElementById("barrasEscola"), {
+
+    type:"bar",
+
+    data:{
+
+        labels:["Meninas","Demais estudantes"],
+
+        datasets:[{
+
+            data:[
+                escolaFeminino,
+                escolaTotal - escolaFeminino
+            ],
+
+            borderRadius:8,
+
+            barThickness:28,
+
+            maxBarThickness:28
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                display:false
+            }
+        },
+
+        scales:{
+            y:{
+                beginAtZero:true
+            }
+        }
+    }
+
+});
+
+
+/* =====================================================
+   PIZZA OMEM
+===================================================== */
+
+new Chart(document.getElementById("pizzaOMEM"), {
+
+    type:"doughnut",
+
+    data:{
+
+        labels:["Meninas","Demais estudantes"],
+
+        datasets:[{
+
+            data:[
+                omemFeminino,
+                omemTotal - omemFeminino
+            ],
+
+            borderWidth:3
+
+        }]
+
+    },
+
+    options:{
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                position:"bottom"
+            },
+
+            tooltip:{
+                callbacks:{
+                    label:function(context){
+
+                        const total =
+                            context.dataset.data.reduce(
+                                (a,b)=>a+b,0
+                            );
+
+                        return context.label +
+                            ": " +
+                            context.raw +
+                            " (" +
+                            percentual(context.raw/total*100) +
+                            ")";
+
+                    }
+                }
+            }
+        }
+    }
+
+});
+
+
+/* =====================================================
+   PIZZA OBMEP
+===================================================== */
+
+new Chart(document.getElementById("pizzaOBMEP"), {
+
+    type:"doughnut",
+
+    data:{
+
+        labels:["Meninas","Demais estudantes"],
+
+        datasets:[{
+
+            data:[
+                obmep2026Feminino,
+                obmep2026Total - obmep2026Feminino
+            ],
+
+            borderWidth:3
+
+        }]
+
+    },
+
+    options:{
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                position:"bottom"
+            },
+
+            tooltip:{
+                callbacks:{
+                    label:function(context){
+
+                        const total =
+                            context.dataset.data.reduce(
+                                (a,b)=>a+b,0
+                            );
+
+                        return context.label +
+                            ": " +
+                            context.raw +
+                            " (" +
+                            percentual(context.raw/total*100) +
+                            ")";
+
+                    }
+                }
+            }
+        }
+    }
+
+});
+
+
+/* =====================================================
+   COMPARATIVO PRINCIPAL
+===================================================== */
+
+new Chart(document.getElementById("comparativo"), {
+
+    type:"bar",
+
+    data:{
+
+        labels:[
+            "OMEM 2026",
+            "OBMEP 2026"
+        ],
+
+        datasets:[
+
+            {
+                label:"Universo escolar",
+
+                data:[
+                    escola2026Percent,
+                    escola2026Percent
+                ],
+
+                barThickness:22,
+                maxBarThickness:22
+            },
+
+            {
+                label:"2ª fase",
+
+                data:[
+                    omemPercent,
+                    obmep2026Percent
+                ],
+
+                barThickness:22,
+                maxBarThickness:22
+            }
+
+        ]
+
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        scales:{
+
+            y:{
+                beginAtZero:true,
+                max:60,
+
+                ticks:{
+                    callback:value =>
+                        value + "%"
+                }
+            }
+
+        },
+
+        plugins:{
+
+            tooltip:{
+                callbacks:{
+                    label:context =>
+                        context.dataset.label +
+                        ": " +
+                        percentual(context.raw)
+                }
+            }
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   DIFERENÇA
+===================================================== */
+
+new Chart(document.getElementById("diferenca"), {
+
+    type:"bar",
+
+    data:{
+
+        labels:[
+            "OMEM 2026",
+            "OBMEP 2026"
+        ],
+
+        datasets:[{
+
+            label:"Diferença",
+
+            data:[
+                escola2026Percent - omemPercent,
+                escola2026Percent - obmep2026Percent
+            ],
+
+            barThickness:25,
+            maxBarThickness:25,
+
+            borderRadius:8
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        indexAxis:"y",
+
+        plugins:{
+
+            legend:{
+                display:false
+            },
+
+            tooltip:{
+                callbacks:{
+                    label:context =>
+                        "Diferença: " +
+                        percentual(context.raw)
+                }
+            }
+
+        },
+
+        scales:{
+
+            x:{
+                beginAtZero:true,
+
+                ticks:{
+                    callback:value =>
+                        value + " p.p."
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   REPRESENTATIVIDADE
+===================================================== */
+
+new Chart(document.getElementById("representatividade"), {
+
+    type:"bar",
+
+    data:{
+
+        labels:[
+            "OMEM 2026",
+            "OBMEP 2026"
+        ],
+
+        datasets:[{
+
+            label:"Índice de representatividade",
+
+            data:[
+                repOMEM,
+                repOBMEP
+            ],
+
+            barThickness:26,
+            maxBarThickness:26,
+            borderRadius:8
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        scales:{
+
+            y:{
+                beginAtZero:true,
+                max:110,
+
+                ticks:{
+                    callback:value =>
+                        value + "%"
+                }
+            }
+
+        },
+
+        plugins:{
+
+            tooltip:{
+                callbacks:{
+                    label:context =>
+                        "Representatividade: " +
+                        percentual(context.raw)
+                }
+            }
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   EVOLUÇÃO OBMEP
+===================================================== */
+
+new Chart(document.getElementById("evolucao"), {
+
+    type:"line",
+
+    data:{
+
+        labels:["2025","2026"],
+
+        datasets:[
+
+            {
+                label:"Universo escolar",
+
+                data:[
+                    escola2025Percent,
+                    escola2026Percent
+                ],
+
+                tension:.25,
+
+                pointRadius:6
+            },
+
+            {
+                label:"2ª fase",
+
+                data:[
+                    obmep2025Percent,
+                    obmep2026Percent
+                ],
+
+                tension:.25,
+
+                pointRadius:6
+            }
+
+        ]
+
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        scales:{
+
+            y:{
+                min:25,
+                max:60,
+
+                ticks:{
+                    callback:value =>
+                        value + "%"
+                }
+            }
+
+        },
+
+        plugins:{
+
+            tooltip:{
+                callbacks:{
+                    label:context =>
+                        context.dataset.label +
+                        ": " +
+                        percentual(context.raw)
+                }
+            }
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   QR CODE
+===================================================== */
+
+/*
+   QUANDO O SITE ESTIVER HOSPEDADO:
+
+   Se você abrir pelo GitHub Pages, o próprio código
+   usará automaticamente o endereço da página.
+
+   Exemplo:
+
+   https://seunome.github.io/meninas-olimpiadas/
+
+*/
+
+const enderecoPagina = window.location.href;
+
+if(
+    window.location.protocol !== "file:" &&
+    enderecoPagina.startsWith("http")
+){
+
+    document.getElementById("qrcode").innerHTML = "";
+
+    new QRCode(
+        document.getElementById("qrcode"),
+        {
+            text:enderecoPagina,
+            width:170,
+            height:170
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
