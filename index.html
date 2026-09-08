@@ -40,7 +40,7 @@ body{
 /* HEADER */
 
 header{
-    margin:25px auto;
+    margin:25px auto 15px;
     padding:42px 35px;
     border-radius:24px;
     background:linear-gradient(135deg,#4d3bc4,#7664f4);
@@ -81,6 +81,25 @@ header p{
     border:1px solid rgba(255,255,255,.3);
     border-radius:30px;
     background:rgba(255,255,255,.12);
+}
+
+/* ILUSTRAÇÃO DA CAPA */
+
+.banner-illustration{
+    margin:0 0 25px;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    background:white;
+    border:1px solid var(--border);
+}
+
+.banner-illustration img{
+    width:100%;
+    height:auto;
+    display:block;
+    max-height:480px;
+    object-fit:cover;
 }
 
 /* INTRO */
@@ -307,7 +326,7 @@ th:first-child{
 
 .qr-section p{
     color:#d4d7e2;
-    line-height:1.5;
+    line-height:1.55;
 }
 
 #qrcode{
@@ -324,8 +343,9 @@ th:first-child{
 #qrMessage{
     color:#555;
     text-align:center;
-    font-size:12px;
+    font-size:13px;
     padding:10px;
+    line-height:1.4;
 }
 
 /* FOOTER */
@@ -420,6 +440,10 @@ footer{
 
 </header>
 
+<!-- ILUSTRAÇÃO DA INTERFACE -->
+<div class="banner-illustration">
+    <img src="https://storage.googleapis.com/generativeai-downloads/images/watermarked_img_8859901217061148973.jpg" alt="Meninas no Laboratório de Ciências e Matemática">
+</div>
 
 <section class="intro">
 
@@ -830,27 +854,22 @@ footer{
 
     <div>
 
-        <h2>📱 Acesse a pesquisa</h2>
+        <h2>📱 Compartilhe este painel</h2>
 
         <p>
-            Depois que este painel estiver hospedado na internet,
-            o QR Code poderá ser utilizado pelos visitantes da Feira
-            de Ciências para acessar os dados pelo celular.
+            Escaneie o QR Code ao lado utilizando a câmera do seu celular para acompanhar os dados interativos da pesquisa em tempo real durante a Feira de Ciências.
         </p>
 
         <p>
-            <strong>
-                Se você abrir este arquivo diretamente no computador,
-                o QR Code ficará aguardando o endereço da página.
-            </strong>
+            Leve o relatório completo com você e contribua para o debate sobre a representatividade feminina no ecossistema científico e acadêmico.
         </p>
 
     </div>
 
     <div id="qrcode">
         <div id="qrMessage">
-            Publique o site<br>
-            para gerar o QR Code.
+            <strong>Modo de exibição</strong><br>
+            Aponte a câmera do celular para abrir o painel.
         </div>
     </div>
 
@@ -1461,18 +1480,6 @@ new Chart(document.getElementById("evolucao"), {
 /* =====================================================
    QR CODE
 ===================================================== */
-
-/*
-   QUANDO O SITE ESTIVER HOSPEDADO:
-
-   Se você abrir pelo GitHub Pages, o próprio código
-   usará automaticamente o endereço da página.
-
-   Exemplo:
-
-   https://seunome.github.io/meninas-olimpiadas/
-
-*/
 
 const enderecoPagina = window.location.href;
 
